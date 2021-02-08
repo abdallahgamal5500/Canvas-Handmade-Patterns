@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Handmade Patterns</string>
+    <string name="choose_spinner1_text">اختار الغرزة المناسبة</string>
+    <string name="choose_spinner2_text">اختار عدد الصفوف</string>
+    <string name="choose_spinner3_text">اختار عدد الأعمدة</string>
+    <string name="choose_btn">اذهب</string>
+    <string name="toolbar_spinner">Color</string>
+    <string name="apply_btn">تم</string>
+    <array name="choose_spinner_1">
+        <item>غرزة الطوب العرضى</item>
+        <item>غرزة الطوب الطولى</item>
+        <item>الغرزة الرباعية</item>
+        <item>غرزة المربعات</item>
+    </array>
+
+    <!-- help class messages-->
+    <string name="yes_dialog_button">نعم</string>
+    <string name="no_dialog_button">لا</string>
+
+    <!-- reload dialog-->
+    <string name="dialog_reload_message">هل تريد مسح الرسوم الحالية من الشاشة؟</string>
+    <string name="dialog_reload_toast_message">تم مسح الرسوم بنجاح</string>
+
+    <!-- back pressed dialog-->
+    <string name="dialog_back_pressed_message">هل انت متأكد من إغلاق هذه الصفحة؟</string>
+
+    <!-- save btn-->
+    <string name="save_btn_toast_done">تم حفظ صورة للصفحة بالمعرض بنجاح</string>
+    <string name="save_btn_toast_failed">حدث خطأ اثناء الحفظ</string>
+
+    <!-- storage permission request message-->
+    <string name="storage_permission_toast">من فظلك اعط صلاحية الوصول الى الذاكرة</string>
+
+
+
+
+</resources>

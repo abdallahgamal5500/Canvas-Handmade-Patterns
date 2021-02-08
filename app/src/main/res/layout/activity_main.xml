@@ -1,36 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <com.example.handmadepatterns.Canvas
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:id="@+id/canvas"/>
+        android:layout_height="match_parent"
+        android:background="@color/colorAccent"
+        android:forceDarkAllowed="false">
 
-    <Button
-        android:layout_width="100dp"
-        android:layout_height="50dp"
-        app:layout_constraintStart_toStartOf="parent"
-        android:background="#2196F3"
-        android:text="Swap 1"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:id="@+id/swap_btn1"/>
+        <ImageView
+            android:layout_width="@dimen/_150sdp"
+            android:layout_height="@dimen/_150sdp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:src="@drawable/logo"
+            android:layout_marginBottom="@dimen/_100sdp"
+            android:id="@+id/main_img1" />
 
-    <Button
-        android:layout_width="100dp"
-        android:layout_height="50dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:background="#2196F3"
-        android:text="Swap 2"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:id="@+id/swap_btn2"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:textStyle="normal"
+            android:fontFamily="@font/montserrat_alternates"
+            android:text="@string/app_name"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_20sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/main_img1"
+            android:id="@+id/main_text1" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
