@@ -45,7 +45,7 @@ public class CanvasSquare extends View {
         for (int i=0;i<Constants.SQUARE_COLUMNS_COUNT * Constants.SQUARE_RAWS_COUNT;i++) {
             paintArrayList.add(new Paint(Paint.ANTI_ALIAS_FLAG));
             rectArrayList.add(new Rect());
-            model.add(new PaintingModel(Constants.SQUARE_DEFAULT_COLOR));
+            model.add(new PaintingModel(Constants.DEFAULT_COLOR));
         }
     }
 
@@ -55,7 +55,7 @@ public class CanvasSquare extends View {
         int hcounter1 = 0,vcounter = 0;
 
         if (painting)
-            model.get(index).setFillColor(Constants.SQUARE_CLICK_COLOR);
+            model.get(index).setFillColor(Constants.CURRENT_COLOR);
 
         for (int i=0;i<Constants.SQUARE_COLUMNS_COUNT * Constants.SQUARE_RAWS_COUNT;i++) {
             rectArrayList.get(i).left = hcounter1;
@@ -88,6 +88,7 @@ public class CanvasSquare extends View {
                 index = (raw-1)*Constants.SQUARE_COLUMNS_COUNT+column-1;
                 painting = true;
                 postInvalidate();
+                break;
         }
         return true;
     }

@@ -65,6 +65,9 @@ public class FragmentSquare extends Fragment implements View.OnClickListener, IO
         toolbar_reload.setOnClickListener(this);
         toolbar_save_btn.setOnClickListener(this);
 
+        communicator.handleToalsPen();
+
+
         return view;
     }
 
@@ -79,10 +82,13 @@ public class FragmentSquare extends Fragment implements View.OnClickListener, IO
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.tools_pen:
+                communicator.handleToalsPen();
                 break;
             case R.id.tools_eraser:
+                communicator.handleToalsEraser();
                 break;
             case R.id.tools_palette:
+                communicator.handleToalsPalette();
                 break;
             case R.id.tools_zoom_in:
                 binding.squareCanvas.zoomIn();
@@ -96,9 +102,7 @@ public class FragmentSquare extends Fragment implements View.OnClickListener, IO
                 help.showReloadDialog(FragmentSquare.getInstance());
                 break;
             case R.id.toolbar_save_btn:
-                communicator.hideTools();
-                help.saveAndTakeScreenShot();
-                communicator.showTools();
+                communicator.handleToalsSave();
                 break;
         }
     }

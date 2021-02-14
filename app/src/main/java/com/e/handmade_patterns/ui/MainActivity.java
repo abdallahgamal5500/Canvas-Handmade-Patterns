@@ -10,9 +10,6 @@ import androidx.databinding.DataBindingUtil;
 
 import com.e.handmade_patterns.R;
 import com.e.handmade_patterns.databinding.ActivityMainBinding;
-import com.e.handmade_patterns.helper.Constants;
-
-import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -26,9 +23,6 @@ public class MainActivity extends AppCompatActivity {
 
         //this line to disable darkmood
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-
-        // this line to know the default language of the phone
-        Constants.CURRENT_LANGUAGE =  Locale.getDefault().getDisplayLanguage();
 
         runSplashScreen();
     }

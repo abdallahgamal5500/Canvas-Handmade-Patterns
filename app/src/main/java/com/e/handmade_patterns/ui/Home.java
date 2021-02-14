@@ -11,13 +11,17 @@ import androidx.fragment.app.Fragment;
 import com.e.handmade_patterns.R;
 import com.e.handmade_patterns.databinding.ActivityHomeBinding;
 import com.e.handmade_patterns.fragments.FragmentChoose;
+import com.e.handmade_patterns.fragments.FragmentPalette;
 import com.e.handmade_patterns.fragments.FragmentSquare;
+import com.e.handmade_patterns.helper.Constants;
+import com.e.handmade_patterns.helper.Help;
 import com.e.handmade_patterns.interfaces.Communicator;
 import com.e.handmade_patterns.interfaces.IOnBackPressed;
 
-public class Home extends AppCompatActivity implements Communicator,View.OnClickListener{
+public class Home extends AppCompatActivity implements Communicator{
 
     private ActivityHomeBinding binding;
+    private Help help;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +32,8 @@ public class Home extends AppCompatActivity implements Communicator,View.OnClick
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
 
         showFragmentHere(FragmentChoose.getInstance());
+
+        help = new Help(getApplicationContext(),this);
     }
 
     private void showFragmentHere (Fragment fragment) {
@@ -65,6 +71,36 @@ public class Home extends AppCompatActivity implements Communicator,View.OnClick
     }
 
     @Override
+    public void handleToalsPen() {
+        binding.homeTools.toolsPen.setBackgroundColor(Constants.CLICK_COLOR);
+        binding.homeTools.toolsEraser.setBackgroundColor(Constants.COLOR_ACCENT);
+        Constants.CURRENT_COLOR = Constants.PEN_COLOR;
+        Constants.TOOLS_STATE[0] = true;
+        Constants.TOOLS_STATE[1] = false;
+    }
+
+    @Override
+    public void handleToalsEraser() {
+        binding.homeTools.toolsPen.setBackgroundColor(Constants.COLOR_ACCENT);
+        binding.homeTools.toolsEraser.setBackgroundColor(Constants.CLICK_COLOR);
+        Constants.CURRENT_COLOR = Constants.DELETE_COLOR;
+        Constants.TOOLS_STATE[0] = false;
+        Constants.TOOLS_STATE[1] = true;
+    }
+
+    @Override
+    public void handleToalsPalette() {
+        showFragment(FragmentPalette.getInstance());
+    }
+
+    @Override
+    public void handleToalsSave() {
+        hideTools();
+        help.saveAndTakeScreenShot();
+        showTools();
+    }
+
+    @Override
     public void onBackPressed() {
         Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.home_framelayout);
         if (!(fragment instanceof IOnBackPressed) || !((IOnBackPressed) fragment).onBackPressed()) {
@@ -73,13 +109,6 @@ public class Home extends AppCompatActivity implements Communicator,View.OnClick
                 hideTools();
             }
             super.onBackPressed();
-        }
-    }
-
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.toolbar_reload:
         }
     }
 }

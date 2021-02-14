@@ -8,4 +8,8 @@ public interface Communicator {
     void showToalbar();
     void hideTools();
     void showTools();
+    void handleToalsPen();
+    void handleToalsEraser();
+    void handleToalsPalette();
+    void handleToalsSave();
 }
