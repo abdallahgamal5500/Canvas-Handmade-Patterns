@@ -1,8 +1,10 @@
 package com.e.handmade_patterns.fragments;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,7 +18,6 @@ import com.e.handmade_patterns.R;
 import com.e.handmade_patterns.databinding.FragmentChooseBinding;
 import com.e.handmade_patterns.helper.Constants;
 import com.e.handmade_patterns.interfaces.Communicator;
-import com.jaredrummler.materialspinner.MaterialSpinner;
 
 import java.util.ArrayList;
 
@@ -27,6 +28,8 @@ public class FragmentChoose extends Fragment {
     private ArrayAdapter<CharSequence> adapter1;
     private ArrayList<Integer> integerArrayList = new ArrayList<>();
     private View view;
+    private SharedPreferences preferences;
+    private SharedPreferences.Editor editor;
 
     public FragmentChoose() {
     }
@@ -48,30 +51,17 @@ public class FragmentChoose extends Fragment {
         communicator.hideToalbar();
         communicator.hideTools();
 
+        preferences = getActivity().getSharedPreferences(Constants.DATABASE_NAME,Context.MODE_PRIVATE);
+        editor = preferences.edit();
+
         adapter1 = ArrayAdapter.createFromResource(getContext(),R.array.choose_spinner_1, android.R.layout.simple_spinner_item);
         adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         binding.chooseSpinner1.setAdapter(adapter1);
-        for (int i=0;i<500;i++) {
+        for (int i=0;i<200;i++) {
             integerArrayList.add(i+1);
         }
         binding.chooseSpinner2.setItems(integerArrayList);
         binding.chooseSpinner3.setItems(integerArrayList);
-
-        binding.chooseSpinner1.setOnItemSelectedListener(new MaterialSpinner.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(MaterialSpinner view, int position, long id, Object item) {
-                switch (position) {
-                    case 0:
-                        break;
-                    case 1:
-                        break;
-                    case 2:
-                        break;
-                    case 3:
-                        break;
-                }
-            }
-        });
 
         binding.chooseBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,12 +78,46 @@ public class FragmentChoose extends Fragment {
                         case 0:
                             break;
                         case 1:
+                            Constants.PEYOTE_RAWS_COUNT = Integer.parseInt(binding.chooseSpinner2.getText().toString());
+                            Constants.PEYOTE_COLUMNS_COUNT = Integer.parseInt(binding.chooseSpinner3.getText().toString());
+                            if (preferences.getInt(Constants.PEYOTE_RAWS_COUNT_DB,-1) == -1) {
+                                // u dont have database
+                                Log.i("test","u dont have database");
+                                Constants.PEYOTE_RAWS_COUNT_CURRENT = Constants.PEYOTE_RAWS_COUNT;
+                                Constants.PEYOTE_COLUMNS_COUNT_CURRENT = Constants.PEYOTE_COLUMNS_COUNT;
+                                editor.putInt(Constants.PEYOTE_RAWS_COUNT_DB, Constants.PEYOTE_RAWS_COUNT_CURRENT);
+                                editor.putInt(Constants.PEYOTE_COLUMNS_COUNT_DB, Constants.PEYOTE_COLUMNS_COUNT_CURRENT);
+                                editor.commit();
+                                Log.i("test","DONT HAVE: raws: "+Constants.PEYOTE_RAWS_COUNT_CURRENT);
+                                Log.i("test","DONT HAVE: columns: "+Constants.PEYOTE_COLUMNS_COUNT_CURRENT);
+
+                            } else {
+                                // u already have database
+                                Log.i("test","have database");
+                                Constants.PEYOTE_RAWS_COUNT_CURRENT = preferences.getInt(Constants.PEYOTE_RAWS_COUNT_DB,-1);
+                                Constants.PEYOTE_COLUMNS_COUNT_CURRENT = preferences.getInt(Constants.PEYOTE_COLUMNS_COUNT_DB,-1);
+                                Log.i("test","HAVE: raws: "+Constants.PEYOTE_RAWS_COUNT_CURRENT);
+                                Log.i("test","HAVE: columns: "+Constants.PEYOTE_COLUMNS_COUNT_CURRENT);
+                            }
+                            communicator.showFragment(FragmentPeyote.getInstance());
                             break;
                         case 2:
                             break;
                         case 3:
                             Constants.SQUARE_RAWS_COUNT = Integer.parseInt(binding.chooseSpinner2.getText().toString());
                             Constants.SQUARE_COLUMNS_COUNT = Integer.parseInt(binding.chooseSpinner3.getText().toString());
+                            if (preferences.getInt(Constants.SQUARE_RAWS_COUNT_DB,-1) == -1) {
+                                // u dont have database
+                                Constants.SQUARE_RAWS_COUNT_CURRENT = Constants.SQUARE_RAWS_COUNT;
+                                Constants.SQUARE_COLUMNS_COUNT_CURRENT = Constants.SQUARE_COLUMNS_COUNT;
+                                editor.putInt(Constants.SQUARE_RAWS_COUNT_DB, Constants.SQUARE_RAWS_COUNT_CURRENT);
+                                editor.putInt(Constants.SQUARE_COLUMNS_COUNT_DB, Constants.SQUARE_COLUMNS_COUNT_CURRENT);
+                                editor.commit();
+                            } else {
+                                // u already have database
+                                Constants.SQUARE_RAWS_COUNT_CURRENT = preferences.getInt(Constants.SQUARE_RAWS_COUNT_DB,-1);
+                                Constants.SQUARE_COLUMNS_COUNT_CURRENT = preferences.getInt(Constants.SQUARE_COLUMNS_COUNT_DB,-1);
+                            }
                             communicator.showFragment(FragmentSquare.getInstance());
                             break;
                     }

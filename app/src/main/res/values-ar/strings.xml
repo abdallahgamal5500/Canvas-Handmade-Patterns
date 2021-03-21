@@ -30,9 +30,6 @@
     <string name="save_btn_toast_failed">حدث خطأ اثناء الحفظ</string>
 
     <!-- storage permission request message-->
-    <string name="storage_permission_toast">من فظلك اعط صلاحية الوصول الى الذاكرة</string>
-
-
-
+    <string name="storage_permission_toast">Please give a permission to access the storage</string>
 
 </resources>

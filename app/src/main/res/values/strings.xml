@@ -28,8 +28,7 @@
     <string name="save_btn_toast_done">The screenshot is saved successfully to your Gallery</string>
     <string name="save_btn_toast_failed">Failed during saving</string>
 
-<!-- storage permission request message-->
-    <string name="storage_permission_toast">Go to Permissions to Grant Storage</string>
-
+    <!-- storage permission request message-->
+    <string name="storage_permission_toast"></string>
 
 </resources>

@@ -17,30 +17,30 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            android:id="@+id/v_square_scroll">
+            android:id="@+id/v_peyote_scroll">
 
             <HorizontalScrollView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scrollbars="none"
-                android:id="@+id/h_square_scroll">
+                android:id="@+id/h_peyote_scroll">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
-                    <com.e.handmade_patterns.canvas.CanvasSquare
+                    <com.e.handmade_patterns.canvas.CanvasPeyote
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintRight_toRightOf="parent"
-                        android:id="@+id/square_canvas"/>
+                        android:id="@+id/peyote_canvas"/>
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_100sdp"
-                        app:layout_constraintTop_toBottomOf="@id/square_canvas"
+                        app:layout_constraintTop_toBottomOf="@id/peyote_canvas"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintRight_toRightOf="parent"/>
 

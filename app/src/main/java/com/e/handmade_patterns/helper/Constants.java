@@ -1,5 +1,6 @@
 package com.e.handmade_patterns.helper;
 
+import android.content.Context;
 import android.graphics.Color;
 
 public class Constants {
@@ -13,13 +14,35 @@ public class Constants {
     public final static int DEFAULT_COLOR = Color.WHITE;
     public static boolean [] TOOLS_STATE = new boolean[3];
 
+    // common betweet the canvas
+    public static String DATABASE_NAME = "DATABASE_NAME";
+    public static final int STROKE_SIZE = 5;
+
     // square
     public static int SQUARE_ITEM_SIZE = 50;
     public static int SQUARE_ZOOMING_RATIO = 25;
     public static int SQUARE_RAWS_COUNT = 0;
     public static int SQUARE_COLUMNS_COUNT =0;
-    public static final int SQUARE_STROKE_COLOR = Color.CYAN;
-    public static int SQUARE_STROKE_SIZE = 5;
+    public static int SQUARE_RAWS_COUNT_CURRENT = 0;
+    public static int SQUARE_COLUMNS_COUNT_CURRENT =0;
+    public static String SQUARE_COLOR_DB = "SQUARE_COLOR";
+    public static String SQUARE_RAWS_COUNT_DB = "SQUARE_RAWS_COUNT";
+    public static String SQUARE_COLUMNS_COUNT_DB = "SQUARE_COLUMNS_COUNT";
+    public static Context SQUARE_CONTEXT = null;
+
+    // peyote
+    public static int PEYOTE_WIDTH_SIZE = 40;
+    public static int PEYOTE_HEIGHT_SIZE = 50;
+    public static int PEYOTE_ZOOMING_RATIO_WIDTH = 20;
+    public static int PEYOTE_ZOOMING_RATIO_HEIGHT = 25;
+    public static int PEYOTE_RAWS_COUNT = 0;
+    public static int PEYOTE_COLUMNS_COUNT =0;
+    public static int PEYOTE_RAWS_COUNT_CURRENT = 0;
+    public static int PEYOTE_COLUMNS_COUNT_CURRENT =0;
+    public static String PEYOTE_COLOR_DB = "PEYOTE_COLOR";
+    public static String PEYOTE_RAWS_COUNT_DB = "PEYOTE_RAWS_COUNT";
+    public static String PEYOTE_COLUMNS_COUNT_DB = "PEYOTE_COLUMNS_COUNT";
+    public static Context PEYOTE_CONTEXT = null;
 
     // choose fragment
     public static final String EN_CHOOSE_SPINNER1_TEXT = "Choose stitch";
