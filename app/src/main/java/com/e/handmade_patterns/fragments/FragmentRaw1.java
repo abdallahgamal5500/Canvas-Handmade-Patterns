@@ -13,15 +13,15 @@ import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 
 import com.e.handmade_patterns.R;
-import com.e.handmade_patterns.databinding.FragmentPeyoteBinding;
+import com.e.handmade_patterns.databinding.FragmentRaw1Binding;
 import com.e.handmade_patterns.helper.Constants;
 import com.e.handmade_patterns.helper.Help;
 import com.e.handmade_patterns.interfaces.Communicator;
 import com.e.handmade_patterns.interfaces.IOnBackPressed;
 
-public class FragmentPeyote extends Fragment implements View.OnClickListener, IOnBackPressed {
+public class FragmentRaw1 extends Fragment implements View.OnClickListener, IOnBackPressed {
 
-    private FragmentPeyoteBinding binding;
+    private FragmentRaw1Binding binding;
     private Communicator communicator;
     private View view;
     private Help help;
@@ -29,20 +29,20 @@ public class FragmentPeyote extends Fragment implements View.OnClickListener, IO
     private SharedPreferences.Editor editor;
     private ImageView tools_pen,tools_eraser,tools_palette,tools_zoom_in,tools_zoom_out,toolbar_reload,toolbar_save_btn;
 
-    public FragmentPeyote() {
+    public FragmentRaw1() {
     }
 
-    public static FragmentPeyote getInstance() {
-        FragmentPeyote fragmentPeyote = null;
-        if (fragmentPeyote == null)
-            fragmentPeyote = new FragmentPeyote();
-        return fragmentPeyote;
+    public static FragmentRaw1 getInstance() {
+        FragmentRaw1 fragmentRaw1 = null;
+        if (fragmentRaw1 == null)
+            fragmentRaw1 = new FragmentRaw1();
+        return fragmentRaw1;
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_peyote, container, false);
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_raw1, container, false);
         view = binding.getRoot();
 
         // this line to show the left tools layout
@@ -80,7 +80,7 @@ public class FragmentPeyote extends Fragment implements View.OnClickListener, IO
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         communicator = (Communicator) context;
-        Constants.PEYOTE_CONTEXT = getContext();
+        Constants.RAW1_CONTEXT = getContext();
         help = new Help(context,getActivity());
     }
 
@@ -97,23 +97,22 @@ public class FragmentPeyote extends Fragment implements View.OnClickListener, IO
                 communicator.handleToalsPalette();
                 break;
             case R.id.tools_zoom_in:
-                binding.peyoteCanvas.zoomIn();
+                binding.raw1Canvas.zoomIn();
                 setCanvasSize();
                 break;
             case R.id.tools_zoom_out:
-                binding.peyoteCanvas.zoomOut();
+                binding.raw1Canvas.zoomOut();
                 setCanvasSize();
                 break;
             case R.id.toolbar_reload:
-                help.showReloadDialog(FragmentPeyote.getInstance());
-                for (int i=0;i<Constants.PEYOTE_COLUMNS_COUNT_CURRENT * Constants.PEYOTE_RAWS_COUNT_CURRENT;i++) {
-                    editor.remove(Constants.PEYOTE_COLOR_DB+i);
+                help.showReloadDialog(FragmentRaw1.getInstance());
+                for (int i=0;i<Constants.RAW1_COLUMNS_COUNT_CURRENT * Constants.RAW1_RAWS_COUNT_CURRENT;i++) {
+                    editor.remove(Constants.RAW1_COLOR_DB+i);
                 }
-                Constants.PEYOTE_RAWS_COUNT_CURRENT = Constants.PEYOTE_RAWS_COUNT;
-                Constants.PEYOTE_COLUMNS_COUNT_CURRENT = Constants.PEYOTE_COLUMNS_COUNT;
-
-                editor.putInt(Constants.PEYOTE_RAWS_COUNT_DB, Constants.PEYOTE_RAWS_COUNT_CURRENT);
-                editor.putInt(Constants.PEYOTE_COLUMNS_COUNT_DB, Constants.PEYOTE_COLUMNS_COUNT_CURRENT);
+                Constants.RAW1_RAWS_COUNT_CURRENT = Constants.RAW1_RAWS_COUNT;
+                Constants.RAW1_COLUMNS_COUNT_CURRENT = Constants.RAW1_COLUMNS_COUNT;
+                editor.putInt(Constants.RAW1_RAWS_COUNT_DB, Constants.RAW1_RAWS_COUNT_CURRENT);
+                editor.putInt(Constants.RAW1_COLUMNS_COUNT_DB, Constants.RAW1_COLUMNS_COUNT_CURRENT);
                 editor.commit();
                 break;
             case R.id.toolbar_save_btn:
@@ -124,8 +123,9 @@ public class FragmentPeyote extends Fragment implements View.OnClickListener, IO
 
     private void setCanvasSize() {
         // these lines to set the size of the canvas dinamicly
-        binding.peyoteCanvas.setMinimumHeight(Constants.PEYOTE_RAWS_COUNT_CURRENT*Constants.PEYOTE_HEIGHT_SIZE+Constants.PEYOTE_HEIGHT_SIZE/2);
-        binding.peyoteCanvas.setMinimumWidth(Constants.PEYOTE_COLUMNS_COUNT_CURRENT*Constants.PEYOTE_WIDTH_SIZE);
+        binding.raw1Canvas.setMinimumHeight(Constants.RAW1_RAWS_COUNT_CURRENT * Constants.RAW1_ITEM_SIZE);
+        binding.raw1Canvas.setMinimumWidth(Constants.RAW1_COLUMNS_COUNT_CURRENT * Constants.RAW1_ITEM_SIZE);
+        binding.raw1Canvas.setBackgroundColor(Constants.CANVAS_BACKGROUND_COLOR);
     }
 
     @Override

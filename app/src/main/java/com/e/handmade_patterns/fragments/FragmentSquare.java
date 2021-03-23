@@ -112,9 +112,6 @@ public class FragmentSquare extends Fragment implements View.OnClickListener, IO
                 Constants.SQUARE_RAWS_COUNT_CURRENT = Constants.SQUARE_RAWS_COUNT;
                 Constants.SQUARE_COLUMNS_COUNT_CURRENT = Constants.SQUARE_COLUMNS_COUNT;
 
-                editor.remove(Constants.SQUARE_RAWS_COUNT_DB);
-                editor.remove(Constants.SQUARE_COLUMNS_COUNT_DB);
-
                 editor.putInt(Constants.SQUARE_RAWS_COUNT_DB, Constants.SQUARE_RAWS_COUNT_CURRENT);
                 editor.putInt(Constants.SQUARE_COLUMNS_COUNT_DB, Constants.SQUARE_COLUMNS_COUNT_CURRENT);
                 editor.commit();

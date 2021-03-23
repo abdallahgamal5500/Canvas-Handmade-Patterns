@@ -5,7 +5,7 @@
     <color name="black">#121C3B</color>
     <color name="colorAccent">#FFCB41</color>
     <color name="white">#FFFFFF</color>
-    <color name="dark_white">#E6FFFFFF</color>
+    <color name="dark_white">#B3FFFFFF</color>
     <color name="click_color">#80FFFFFF</color>
     <color name="stroke_color">#03C4F4</color>
 </resources>

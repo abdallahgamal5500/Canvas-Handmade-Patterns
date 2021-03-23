@@ -99,14 +99,23 @@ public class CanvasPeyote extends View {
         switch (event.getAction()) {
             case MotionEvent.ACTION_UP:
                 int raw = 0;
-                int column = (int) (event.getX()/Constants.PEYOTE_WIDTH_SIZE)+1;
-                if (column %2 ==0)
-                    raw = (int) ((event.getY()-Constants.PEYOTE_HEIGHT_SIZE/2)/Constants.PEYOTE_HEIGHT_SIZE)+1;
-                else
-                    raw = (int) (event.getY()/Constants.PEYOTE_HEIGHT_SIZE)+1;
-                index = (raw-1)*Constants.PEYOTE_COLUMNS_COUNT_CURRENT+column-1;
-                painting = true;
-                postInvalidate();
+                int column = (int) (event.getX() / Constants.PEYOTE_WIDTH_SIZE) + 1;
+                if (column % 2 == 0 ) {
+                    if (event.getY() > Constants.PEYOTE_HEIGHT_SIZE / 2 && event.getY() <= Constants.PEYOTE_HEIGHT_SIZE*Constants.PEYOTE_RAWS_COUNT_CURRENT + Constants.PEYOTE_HEIGHT_SIZE/2) {
+                        raw = (int) ((event.getY() - Constants.PEYOTE_HEIGHT_SIZE / 2) / Constants.PEYOTE_HEIGHT_SIZE) + 1;
+                        index = (raw-1)*Constants.PEYOTE_COLUMNS_COUNT_CURRENT+column-1;
+                        painting = true;
+                        postInvalidate();
+                    }
+                }
+                else {
+                    if (event.getY() <= Constants.PEYOTE_HEIGHT_SIZE*Constants.PEYOTE_RAWS_COUNT_CURRENT) {
+                        raw = (int) (event.getY()/Constants.PEYOTE_HEIGHT_SIZE)+1;
+                        index = (raw-1)*Constants.PEYOTE_COLUMNS_COUNT_CURRENT+column-1;
+                        painting = true;
+                        postInvalidate();
+                    }
+                }
                 break;
         }
         return true;

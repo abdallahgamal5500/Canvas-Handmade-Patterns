@@ -30,5 +30,4 @@
 
     <!-- storage permission request message-->
     <string name="storage_permission_toast"></string>
-
 </resources>

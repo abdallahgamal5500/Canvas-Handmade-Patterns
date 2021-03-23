@@ -12,6 +12,7 @@ public class Constants {
     public static final int CLICK_COLOR = Color.parseColor("#80FFFFFF");
     public static final int COLOR_ACCENT = Color.parseColor("#FFCB41");
     public final static int DEFAULT_COLOR = Color.WHITE;
+    public final static int CANVAS_BACKGROUND_COLOR = Color.LTGRAY;
     public static boolean [] TOOLS_STATE = new boolean[3];
 
     // common betweet the canvas
@@ -43,6 +44,32 @@ public class Constants {
     public static String PEYOTE_RAWS_COUNT_DB = "PEYOTE_RAWS_COUNT";
     public static String PEYOTE_COLUMNS_COUNT_DB = "PEYOTE_COLUMNS_COUNT";
     public static Context PEYOTE_CONTEXT = null;
+
+    // brick
+    public static int BRICK_WIDTH_SIZE = 50;
+    public static int BRICK_HEIGHT_SIZE = 40;
+    public static int BRICK_ZOOMING_RATIO_WIDTH = 25;
+    public static int BRICK_ZOOMING_RATIO_HEIGHT = 20;
+    public static int BRICK_RAWS_COUNT = 0;
+    public static int BRICK_COLUMNS_COUNT =0;
+    public static int BRICK_RAWS_COUNT_CURRENT = 0;
+    public static int BRICK_COLUMNS_COUNT_CURRENT =0;
+    public static String BRICK_COLOR_DB = "BRICK_COLOR";
+    public static String BRICK_RAWS_COUNT_DB = "BRICK_RAWS_COUNT";
+    public static String BRICK_COLUMNS_COUNT_DB = "BRICK_COLUMNS_COUNT";
+    public static Context BRICK_CONTEXT = null;
+
+    // square
+    public static int RAW1_ITEM_SIZE = 50;
+    public static int RAW1_ZOOMING_RATIO = 25;
+    public static int RAW1_RAWS_COUNT = 0;
+    public static int RAW1_COLUMNS_COUNT =0;
+    public static int RAW1_RAWS_COUNT_CURRENT = 0;
+    public static int RAW1_COLUMNS_COUNT_CURRENT =0;
+    public static String RAW1_COLOR_DB = "RAW1_COLOR";
+    public static String RAW1_RAWS_COUNT_DB = "RAW1_RAWS_COUNT";
+    public static String RAW1_COLUMNS_COUNT_DB = "RAW1_COLUMNS_COUNT";
+    public static Context RAW1_CONTEXT = null;
 
     // choose fragment
     public static final String EN_CHOOSE_SPINNER1_TEXT = "Choose stitch";

@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -76,32 +75,55 @@ public class FragmentChoose extends Fragment {
                     //setViewsState(false);
                     switch (binding.chooseSpinner1.getSelectedIndex()) {
                         case 0:
+                            Constants.BRICK_RAWS_COUNT = Integer.parseInt(binding.chooseSpinner2.getText().toString());
+                            Constants.BRICK_COLUMNS_COUNT = Integer.parseInt(binding.chooseSpinner3.getText().toString());
+                            if (preferences.getInt(Constants.BRICK_RAWS_COUNT_DB,-1) == -1) {
+                                // u dont have database
+                                Constants.BRICK_RAWS_COUNT_CURRENT = Constants.BRICK_RAWS_COUNT;
+                                Constants.BRICK_COLUMNS_COUNT_CURRENT = Constants.BRICK_COLUMNS_COUNT;
+                                editor.putInt(Constants.BRICK_RAWS_COUNT_DB, Constants.BRICK_RAWS_COUNT_CURRENT);
+                                editor.putInt(Constants.BRICK_COLUMNS_COUNT_DB, Constants.BRICK_COLUMNS_COUNT_CURRENT);
+                                editor.commit();
+                            } else {
+                                // u already have database
+                                Constants.BRICK_RAWS_COUNT_CURRENT = preferences.getInt(Constants.BRICK_RAWS_COUNT_DB,-1);
+                                Constants.BRICK_COLUMNS_COUNT_CURRENT = preferences.getInt(Constants.BRICK_COLUMNS_COUNT_DB,-1);
+                            }
+                            communicator.showFragment(FragmentBrick.getInstance());
                             break;
                         case 1:
                             Constants.PEYOTE_RAWS_COUNT = Integer.parseInt(binding.chooseSpinner2.getText().toString());
                             Constants.PEYOTE_COLUMNS_COUNT = Integer.parseInt(binding.chooseSpinner3.getText().toString());
                             if (preferences.getInt(Constants.PEYOTE_RAWS_COUNT_DB,-1) == -1) {
                                 // u dont have database
-                                Log.i("test","u dont have database");
                                 Constants.PEYOTE_RAWS_COUNT_CURRENT = Constants.PEYOTE_RAWS_COUNT;
                                 Constants.PEYOTE_COLUMNS_COUNT_CURRENT = Constants.PEYOTE_COLUMNS_COUNT;
                                 editor.putInt(Constants.PEYOTE_RAWS_COUNT_DB, Constants.PEYOTE_RAWS_COUNT_CURRENT);
                                 editor.putInt(Constants.PEYOTE_COLUMNS_COUNT_DB, Constants.PEYOTE_COLUMNS_COUNT_CURRENT);
                                 editor.commit();
-                                Log.i("test","DONT HAVE: raws: "+Constants.PEYOTE_RAWS_COUNT_CURRENT);
-                                Log.i("test","DONT HAVE: columns: "+Constants.PEYOTE_COLUMNS_COUNT_CURRENT);
-
                             } else {
                                 // u already have database
-                                Log.i("test","have database");
                                 Constants.PEYOTE_RAWS_COUNT_CURRENT = preferences.getInt(Constants.PEYOTE_RAWS_COUNT_DB,-1);
                                 Constants.PEYOTE_COLUMNS_COUNT_CURRENT = preferences.getInt(Constants.PEYOTE_COLUMNS_COUNT_DB,-1);
-                                Log.i("test","HAVE: raws: "+Constants.PEYOTE_RAWS_COUNT_CURRENT);
-                                Log.i("test","HAVE: columns: "+Constants.PEYOTE_COLUMNS_COUNT_CURRENT);
                             }
                             communicator.showFragment(FragmentPeyote.getInstance());
                             break;
                         case 2:
+                            Constants.RAW1_RAWS_COUNT = Integer.parseInt(binding.chooseSpinner2.getText().toString());
+                            Constants.RAW1_COLUMNS_COUNT = Integer.parseInt(binding.chooseSpinner3.getText().toString());
+                            if (preferences.getInt(Constants.RAW1_RAWS_COUNT_DB,-1) == -1) {
+                                // u dont have database
+                                Constants.RAW1_RAWS_COUNT_CURRENT = Constants.RAW1_RAWS_COUNT;
+                                Constants.RAW1_COLUMNS_COUNT_CURRENT = Constants.RAW1_COLUMNS_COUNT;
+                                editor.putInt(Constants.RAW1_RAWS_COUNT_DB, Constants.RAW1_RAWS_COUNT_CURRENT);
+                                editor.putInt(Constants.RAW1_COLUMNS_COUNT_DB, Constants.RAW1_COLUMNS_COUNT_CURRENT);
+                                editor.commit();
+                            } else {
+                                // u already have database
+                                Constants.RAW1_RAWS_COUNT_CURRENT = preferences.getInt(Constants.RAW1_RAWS_COUNT_DB,-1);
+                                Constants.RAW1_COLUMNS_COUNT_CURRENT = preferences.getInt(Constants.RAW1_COLUMNS_COUNT_DB,-1);
+                            }
+                            communicator.showFragment(FragmentRaw1.getInstance());
                             break;
                         case 3:
                             Constants.SQUARE_RAWS_COUNT = Integer.parseInt(binding.chooseSpinner2.getText().toString());
