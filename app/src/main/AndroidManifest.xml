@@ -8,22 +8,28 @@
 
     <application
         android:allowBackup="true"
+        android:largeHeap="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".ui.Home"
-            android:configChanges="orientation|screenSize">
+            android:screenOrientation="portrait">
         </activity>
         <activity android:name=".ui.MainActivity"
-            android:configChanges="orientation|screenSize">
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- Sample AdMob app ID: ca-app-pub-3940256099942544~3347511713 -->
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-7416399602135775~3270185074"/>
     </application>
 
 </manifest>

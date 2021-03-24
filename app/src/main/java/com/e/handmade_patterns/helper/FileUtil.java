@@ -43,7 +43,7 @@ public class FileUtil {
             ContentValues contentValues = new ContentValues();
             contentValues.put(MediaStore.MediaColumns.DISPLAY_NAME, String.format("%d",System.currentTimeMillis()));
             contentValues.put(MediaStore.MediaColumns.MIME_TYPE, "image/png");
-            contentValues.put(MediaStore.MediaColumns.RELATIVE_PATH, "DCIM/" + "Bead Designer");
+            contentValues.put(MediaStore.MediaColumns.RELATIVE_PATH, "DCIM/" + "Handmade Patterns");
             Uri imageUri = resolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues);
             try {
                 fos = resolver.openOutputStream(imageUri);
@@ -52,7 +52,7 @@ public class FileUtil {
             }
         } else {
             String imagesDir = Environment.getExternalStoragePublicDirectory(
-                    Environment.DIRECTORY_DCIM).toString() + File.separator + "Bead Designer";
+                    Environment.DIRECTORY_DCIM).toString() + File.separator + "Handmade Patterns";
 
             File file = new File(imagesDir);
 

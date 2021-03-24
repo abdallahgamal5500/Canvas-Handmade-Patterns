@@ -17,11 +17,14 @@ import com.e.handmade_patterns.helper.Constants;
 import com.e.handmade_patterns.helper.Help;
 import com.e.handmade_patterns.interfaces.Communicator;
 import com.e.handmade_patterns.interfaces.IOnBackPressed;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 
 public class Home extends AppCompatActivity implements Communicator{
 
     private ActivityHomeBinding binding;
     private Help help;
+    private AdView mAdView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +37,10 @@ public class Home extends AppCompatActivity implements Communicator{
         showFragmentHere(FragmentChoose.getInstance());
 
         help = new Help(getApplicationContext(),this);
+
+        mAdView = findViewById(R.id.home_adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
     }
 
     private void showFragmentHere (Fragment fragment) {
