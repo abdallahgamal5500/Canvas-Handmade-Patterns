@@ -12,7 +12,6 @@ import com.e.handmade_patterns.R;
 import com.e.handmade_patterns.databinding.ActivityHomeBinding;
 import com.e.handmade_patterns.fragments.FragmentChoose;
 import com.e.handmade_patterns.fragments.FragmentPalette;
-import com.e.handmade_patterns.fragments.FragmentSquare;
 import com.e.handmade_patterns.helper.Constants;
 import com.e.handmade_patterns.helper.Help;
 import com.e.handmade_patterns.interfaces.Communicator;
@@ -25,6 +24,7 @@ public class Home extends AppCompatActivity implements Communicator{
     private ActivityHomeBinding binding;
     private Help help;
     private AdView mAdView;
+    public static Fragment CURRENT_FRAGMENT = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +34,7 @@ public class Home extends AppCompatActivity implements Communicator{
         //this line to disable darkmood
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
 
-        showFragmentHere(FragmentChoose.getInstance());
+        showFragment(FragmentChoose.getInstance());
 
         help = new Help(getApplicationContext(),this);
 
@@ -43,17 +43,16 @@ public class Home extends AppCompatActivity implements Communicator{
         mAdView.loadAd(adRequest);
     }
 
-    private void showFragmentHere (Fragment fragment) {
+    /*private void showFragmentHere (Fragment fragment) {
         getSupportFragmentManager().beginTransaction()
                 .add(R.id.home_framelayout,fragment)
                 .commit();
-    }
+    }*/
 
     @Override
     public void showFragment(Fragment fragment) {
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.home_framelayout, fragment)
-                .addToBackStack(null)
                 .commit();
     }
 
@@ -111,10 +110,6 @@ public class Home extends AppCompatActivity implements Communicator{
     public void onBackPressed() {
         Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.home_framelayout);
         if (!(fragment instanceof IOnBackPressed) || !((IOnBackPressed) fragment).onBackPressed()) {
-            if (fragment instanceof FragmentSquare) {
-                hideToalbar();
-                hideTools();
-            }
             super.onBackPressed();
         }
     }

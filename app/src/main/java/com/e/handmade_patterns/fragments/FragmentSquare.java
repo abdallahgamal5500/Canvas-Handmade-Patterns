@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 
@@ -18,6 +20,7 @@ import com.e.handmade_patterns.helper.Constants;
 import com.e.handmade_patterns.helper.Help;
 import com.e.handmade_patterns.interfaces.Communicator;
 import com.e.handmade_patterns.interfaces.IOnBackPressed;
+import com.e.handmade_patterns.ui.Home;
 
 public class FragmentSquare extends Fragment implements View.OnClickListener, IOnBackPressed {
 
@@ -30,6 +33,7 @@ public class FragmentSquare extends Fragment implements View.OnClickListener, IO
     private ImageView tools_pen,tools_eraser,tools_palette,tools_zoom_in,tools_zoom_out,toolbar_reload,toolbar_save_btn;
 
     public FragmentSquare() {
+
     }
 
     public static FragmentSquare getInstance() {
@@ -71,6 +75,15 @@ public class FragmentSquare extends Fragment implements View.OnClickListener, IO
         toolbar_reload.setOnClickListener(this);
         toolbar_save_btn.setOnClickListener(this);
 
+        // these lines to handle the margen left of the canvas
+        ConstraintLayout.LayoutParams params = new ConstraintLayout.LayoutParams(
+                CoordinatorLayout.LayoutParams.MATCH_PARENT,
+                CoordinatorLayout.LayoutParams.MATCH_PARENT);
+
+        params.setMargins(getResources().getDimensionPixelSize(R.dimen._30sdp), 0, 0, 0);
+
+        binding.squareParentLayout.setLayoutParams(params);
+
         communicator.handleToalsPen();
 
         return view;
@@ -82,6 +95,7 @@ public class FragmentSquare extends Fragment implements View.OnClickListener, IO
         communicator = (Communicator) context;
         Constants.SQUARE_CONTEXT = getContext();
         help = new Help(context,getActivity());
+        Home.CURRENT_FRAGMENT = FragmentSquare.getInstance();
     }
 
     @Override
@@ -106,14 +120,9 @@ public class FragmentSquare extends Fragment implements View.OnClickListener, IO
                 break;
             case R.id.toolbar_reload:
                 help.showReloadDialog(FragmentSquare.getInstance());
-                for (int i=0;i<Constants.SQUARE_COLUMNS_COUNT_CURRENT * Constants.SQUARE_RAWS_COUNT_CURRENT;i++) {
+                for (int i=0;i<Constants.SQUARE_COLUMNS_COUNT_CURRENT * Constants.SQUARE_RAWS_COUNT_CURRENT;i++)
                     editor.remove(Constants.SQUARE_COLOR_DB+i);
-                }
-                Constants.SQUARE_RAWS_COUNT_CURRENT = Constants.SQUARE_RAWS_COUNT;
-                Constants.SQUARE_COLUMNS_COUNT_CURRENT = Constants.SQUARE_COLUMNS_COUNT;
 
-                editor.putInt(Constants.SQUARE_RAWS_COUNT_DB, Constants.SQUARE_RAWS_COUNT_CURRENT);
-                editor.putInt(Constants.SQUARE_COLUMNS_COUNT_DB, Constants.SQUARE_COLUMNS_COUNT_CURRENT);
                 editor.commit();
                 break;
             case R.id.toolbar_save_btn:
@@ -130,6 +139,6 @@ public class FragmentSquare extends Fragment implements View.OnClickListener, IO
 
     @Override
     public boolean onBackPressed() {
-        return help.showBackDialog();
+        return help.showBackDialog(FragmentChoose.getInstance());
     }
 }

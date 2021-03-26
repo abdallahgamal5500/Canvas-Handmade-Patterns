@@ -1,11 +1,12 @@
 <resources>
     <string name="app_name">Handmade Patterns</string>
     <string name="choose_spinner1_text">Choose stitch</string>
-    <string name="choose_spinner2_text">Choose raws number</string>
-    <string name="choose_spinner3_text">Choose columns number</string>
+    <string name="choose_spinner2_text">Choose the drawing state</string>
+    <string name="choose_spinner3_text">Choose raws number</string>
+    <string name="choose_spinner4_text">Choose columns number</string>
     <string name="choose_btn">GO</string>
     <string name="toolbar_spinner">Color</string>
-    <string name="apply_btn">Apply</string>
+    <string name="apply_btn">Done</string>
     <array name="choose_spinner_1">
         <item>Brick</item>
         <item>Peyote</item>
@@ -30,4 +31,8 @@
 
     <!-- storage permission request message-->
     <string name="storage_permission_toast"></string>
+
+    <!-- choose fragment toast -->
+    <string name="choose_fragment_toast">You can not change the count of the columns or the count of the raws during the drawing</string>
+
 </resources>

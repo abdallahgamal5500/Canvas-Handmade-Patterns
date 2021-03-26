@@ -17,14 +17,18 @@ import androidx.fragment.app.Fragment;
 import com.e.handmade_patterns.R;
 import com.e.handmade_patterns.databinding.FragmentPaletteBinding;
 import com.e.handmade_patterns.helper.Constants;
+import com.e.handmade_patterns.helper.Help;
 import com.e.handmade_patterns.interfaces.Communicator;
+import com.e.handmade_patterns.interfaces.IOnBackPressed;
+import com.e.handmade_patterns.ui.Home;
 import com.skydoves.colorpickerview.ColorEnvelope;
 import com.skydoves.colorpickerview.listeners.ColorEnvelopeListener;
 
-public class FragmentPalette extends Fragment implements View.OnClickListener{
+public class FragmentPalette extends Fragment implements View.OnClickListener, IOnBackPressed {
 
     private FragmentPaletteBinding binding;
     private View view;
+    private Help help;
     private Communicator communicator;
     private ImageView imagesArray [] = new ImageView[6];
     private ColorEnvelope colorEnvelope;
@@ -130,7 +134,7 @@ public class FragmentPalette extends Fragment implements View.OnClickListener{
                     }
                 }
                 editor.commit();
-                getFragmentManager().popBackStack();
+                communicator.showFragment(Home.CURRENT_FRAGMENT);
                 break;
             case R.id.palette_recent1:
                 handleCardClicking(0);
@@ -167,5 +171,11 @@ public class FragmentPalette extends Fragment implements View.OnClickListener{
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         communicator = (Communicator) context;
+        help = new Help(context,getActivity());
+    }
+
+    @Override
+    public boolean onBackPressed() {
+        return help.showBackDialog(Home.CURRENT_FRAGMENT);
     }
 }

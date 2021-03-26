@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 
@@ -18,6 +20,7 @@ import com.e.handmade_patterns.helper.Constants;
 import com.e.handmade_patterns.helper.Help;
 import com.e.handmade_patterns.interfaces.Communicator;
 import com.e.handmade_patterns.interfaces.IOnBackPressed;
+import com.e.handmade_patterns.ui.Home;
 
 public class FragmentRaw1 extends Fragment implements View.OnClickListener, IOnBackPressed {
 
@@ -71,6 +74,15 @@ public class FragmentRaw1 extends Fragment implements View.OnClickListener, IOnB
         toolbar_reload.setOnClickListener(this);
         toolbar_save_btn.setOnClickListener(this);
 
+        // these lines to handle the margen left of the canvas
+        ConstraintLayout.LayoutParams params = new ConstraintLayout.LayoutParams(
+                CoordinatorLayout.LayoutParams.MATCH_PARENT,
+                CoordinatorLayout.LayoutParams.MATCH_PARENT);
+
+        params.setMargins(getResources().getDimensionPixelSize(R.dimen._30sdp), 0, 0, 0);
+
+        binding.raw1ParentLayout.setLayoutParams(params);
+
         communicator.handleToalsPen();
 
         return view;
@@ -82,6 +94,7 @@ public class FragmentRaw1 extends Fragment implements View.OnClickListener, IOnB
         communicator = (Communicator) context;
         Constants.RAW1_CONTEXT = getContext();
         help = new Help(context,getActivity());
+        Home.CURRENT_FRAGMENT = FragmentRaw1.getInstance();
     }
 
     @Override
@@ -106,13 +119,9 @@ public class FragmentRaw1 extends Fragment implements View.OnClickListener, IOnB
                 break;
             case R.id.toolbar_reload:
                 help.showReloadDialog(FragmentRaw1.getInstance());
-                for (int i=0;i<Constants.RAW1_COLUMNS_COUNT_CURRENT * Constants.RAW1_RAWS_COUNT_CURRENT;i++) {
+                for (int i=0;i<Constants.RAW1_COLUMNS_COUNT_CURRENT * Constants.RAW1_RAWS_COUNT_CURRENT;i++)
                     editor.remove(Constants.RAW1_COLOR_DB+i);
-                }
-                Constants.RAW1_RAWS_COUNT_CURRENT = Constants.RAW1_RAWS_COUNT;
-                Constants.RAW1_COLUMNS_COUNT_CURRENT = Constants.RAW1_COLUMNS_COUNT;
-                editor.putInt(Constants.RAW1_RAWS_COUNT_DB, Constants.RAW1_RAWS_COUNT_CURRENT);
-                editor.putInt(Constants.RAW1_COLUMNS_COUNT_DB, Constants.RAW1_COLUMNS_COUNT_CURRENT);
+
                 editor.commit();
                 break;
             case R.id.toolbar_save_btn:
@@ -130,6 +139,6 @@ public class FragmentRaw1 extends Fragment implements View.OnClickListener, IOnB
 
     @Override
     public boolean onBackPressed() {
-        return help.showBackDialog();
+        return help.showBackDialog(FragmentChoose.getInstance());
     }
 }

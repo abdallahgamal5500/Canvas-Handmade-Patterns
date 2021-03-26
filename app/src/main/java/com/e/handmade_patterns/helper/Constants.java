@@ -74,8 +74,22 @@ public class Constants {
     // choose fragment
     public static final String EN_CHOOSE_SPINNER1_TEXT = "Choose stitch";
     public static final String AR_CHOOSE_SPINNER1_TEXT = "اختار الغرزة المناسبة";
-    public static final String EN_CHOOSE_SPINNER2_TEXT = "Choose raws number";
-    public static final String AR_CHOOSE_SPINNER2_TEXT = "اختار عدد الصفوف";
-    public static final String EN_CHOOSE_SPINNER3_TEXT = "Choose columns number";
-    public static final String AR_CHOOSE_SPINNER3_TEXT = "اختار عدد الأعمدة";
+    public static final String EN_CHOOSE_SPINNER1_BRICK = "Brick";
+    public static final String AR_CHOOSE_SPINNER1_BRICK = "غرزة الطوب العرضى";
+    public static final String EN_CHOOSE_SPINNER1_PEYOTE = "Peyote";
+    public static final String AR_CHOOSE_SPINNER1_PEYOTE = "غرزة الطوب الطولى";
+    public static final String EN_CHOOSE_SPINNER1_RAW1 = "Raw 1 bead";
+    public static final String AR_CHOOSE_SPINNER1_RAW1 = "الغرزة الرباعية";
+    public static final String EN_CHOOSE_SPINNER1_SQUARE = "Square";
+    public static final String AR_CHOOSE_SPINNER1_SQUARE = "غرزة المربعات";
+    public static final String EN_CHOOSE_SPINNER2_TEXT = "Choose the drawing state";
+    public static final String AR_CHOOSE_SPINNER2_TEXT = "اختار حالة الرسمة";
+    public static final String EN_CHOOSE_SPINNER2_GO_NEW = "Go to a new design";
+    public static final String AR_CHOOSE_SPINNER2_GO_NEW = "اذهب إلى رسمة جديدة";
+    public static final String EN_CHOOSE_SPINNER2_GO_CURRENT = "Go to the current design";
+    public static final String AR_CHOOSE_SPINNER2_GO_CURRENT = "اذهب إلى الرسمة الحالية";
+    public static final String EN_CHOOSE_SPINNER3_TEXT = "Choose raws number";
+    public static final String AR_CHOOSE_SPINNER3_TEXT = "اختار عدد الصفوف";
+    public static final String EN_CHOOSE_SPINNER4_TEXT = "Choose columns number";
+    public static final String AR_CHOOSE_SPINNER4_TEXT = "اختار عدد الأعمدة";
 }

@@ -2,8 +2,9 @@
 <resources>
     <string name="app_name">Handmade Patterns</string>
     <string name="choose_spinner1_text">اختار الغرزة المناسبة</string>
-    <string name="choose_spinner2_text">اختار عدد الصفوف</string>
-    <string name="choose_spinner3_text">اختار عدد الأعمدة</string>
+    <string name="choose_spinner2_text">اختار حالة الرسمة</string>
+    <string name="choose_spinner3_text">اختار عدد الصفوف</string>
+    <string name="choose_spinner4_text">اختار عدد الأعمدة</string>
     <string name="choose_btn">اذهب</string>
     <string name="toolbar_spinner">Color</string>
     <string name="apply_btn">تم</string>
@@ -31,5 +32,9 @@
 
     <!-- storage permission request message-->
     <string name="storage_permission_toast">Please give a permission to access the storage</string>
+
+    <!-- choose fragment toast -->
+    <string name="choose_fragment_toast">لا يمكنك تغيير عدد الصفوف أو الأعمدة أثناء الرسم</string>
+
 
 </resources>

@@ -66,14 +66,16 @@ public class Help {
                 }).check();
     }
 
-    public boolean showBackDialog() {
+    public boolean showBackDialog(final Fragment fragment) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setCancelable(false);
         builder.setMessage(R.string.dialog_back_pressed_message);
         builder.setPositiveButton(R.string.yes_dialog_button, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                appCompatActivity.getSupportFragmentManager().popBackStack();
+                appCompatActivity.getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.home_framelayout, fragment)
+                        .commit();
             }
         });
         builder.setNegativeButton(R.string.no_dialog_button,new DialogInterface.OnClickListener() {
