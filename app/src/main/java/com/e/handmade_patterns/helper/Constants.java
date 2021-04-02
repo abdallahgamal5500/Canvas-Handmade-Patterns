@@ -11,6 +11,7 @@ public class Constants {
     public static int PEN_COLOR = Color.parseColor("#FFCB41"), CURRENT_COLOR = Color.parseColor("#FFCB41");
     public static final int CLICK_COLOR = Color.parseColor("#80FFFFFF");
     public static final int COLOR_ACCENT = Color.parseColor("#FFCB41");
+    public static final int RAW1_BACKGROUND_COLOR = Color.parseColor("#EEEEEE");
     public final static int DEFAULT_COLOR = Color.WHITE;
     public final static int CANVAS_BACKGROUND_COLOR = Color.LTGRAY;
     public static boolean [] TOOLS_STATE = new boolean[3];
@@ -32,9 +33,9 @@ public class Constants {
     public static Context SQUARE_CONTEXT = null;
 
     // peyote
-    public static int PEYOTE_WIDTH_SIZE = 40;
+    public static int PEYOTE_WIDTH_SIZE = 50;
     public static int PEYOTE_HEIGHT_SIZE = 50;
-    public static int PEYOTE_ZOOMING_RATIO_WIDTH = 20;
+    public static int PEYOTE_ZOOMING_RATIO_WIDTH = 25;
     public static int PEYOTE_ZOOMING_RATIO_HEIGHT = 25;
     public static int PEYOTE_RAWS_COUNT = 0;
     public static int PEYOTE_COLUMNS_COUNT =0;
@@ -47,9 +48,9 @@ public class Constants {
 
     // brick
     public static int BRICK_WIDTH_SIZE = 50;
-    public static int BRICK_HEIGHT_SIZE = 40;
+    public static int BRICK_HEIGHT_SIZE = 50;
     public static int BRICK_ZOOMING_RATIO_WIDTH = 25;
-    public static int BRICK_ZOOMING_RATIO_HEIGHT = 20;
+    public static int BRICK_ZOOMING_RATIO_HEIGHT = 25;
     public static int BRICK_RAWS_COUNT = 0;
     public static int BRICK_COLUMNS_COUNT =0;
     public static int BRICK_RAWS_COUNT_CURRENT = 0;
@@ -59,7 +60,7 @@ public class Constants {
     public static String BRICK_COLUMNS_COUNT_DB = "BRICK_COLUMNS_COUNT";
     public static Context BRICK_CONTEXT = null;
 
-    // square
+    // raw1
     public static int RAW1_ITEM_SIZE = 50;
     public static int RAW1_ZOOMING_RATIO = 25;
     public static int RAW1_RAWS_COUNT = 0;

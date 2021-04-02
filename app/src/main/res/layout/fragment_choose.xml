@@ -70,7 +70,7 @@
                     android:textAlignment="gravity"
                     android:foregroundGravity="left"
                     android:textDirection="ltr"
-                    android:layout_marginTop="@dimen/_175sdp"
+                    android:layout_marginTop="@dimen/_160sdp"
                     android:layout_marginHorizontal="@dimen/_30sdp"
                     android:id="@+id/choose_card1">
 

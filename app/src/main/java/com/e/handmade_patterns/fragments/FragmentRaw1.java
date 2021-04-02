@@ -134,7 +134,7 @@ public class FragmentRaw1 extends Fragment implements View.OnClickListener, IOnB
         // these lines to set the size of the canvas dinamicly
         binding.raw1Canvas.setMinimumHeight(Constants.RAW1_RAWS_COUNT_CURRENT * Constants.RAW1_ITEM_SIZE);
         binding.raw1Canvas.setMinimumWidth(Constants.RAW1_COLUMNS_COUNT_CURRENT * Constants.RAW1_ITEM_SIZE);
-        binding.raw1Canvas.setBackgroundColor(Constants.CANVAS_BACKGROUND_COLOR);
+        binding.raw1Canvas.setBackgroundColor(Constants.RAW1_BACKGROUND_COLOR);
     }
 
     @Override
