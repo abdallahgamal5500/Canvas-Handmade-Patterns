@@ -22,6 +22,10 @@ public class CanvasRaw1 extends View {
     private ArrayList<Paint> paintArrayList;
     private ArrayList<Rect> rectArrayList;
     private ArrayList<Integer> colorArrayList;
+    private ArrayList<Integer> leftArrayList;
+    private ArrayList<Integer> rightArrayList;
+    private ArrayList<Integer> topArrayList;
+    private ArrayList<Integer> bottomArrayList;
     private boolean painting = false;
     private int index;
 
@@ -44,6 +48,10 @@ public class CanvasRaw1 extends View {
         paintArrayList = new ArrayList<>();
         rectArrayList = new ArrayList<>();
         colorArrayList = new ArrayList<>();
+        leftArrayList = new ArrayList<>();
+        rightArrayList = new ArrayList<>();
+        topArrayList = new ArrayList<>();
+        bottomArrayList = new ArrayList<>();
 
         preferences = Constants.RAW1_CONTEXT.getSharedPreferences(Constants.DATABASE_NAME,Context.MODE_PRIVATE);
         editor = preferences.edit();
@@ -58,7 +66,20 @@ public class CanvasRaw1 extends View {
     @Override
     protected void onDraw(android.graphics.Canvas canvas) {
         super.onDraw(canvas);
-        int hcounter1 = Constants.RAW1_ITEM_SIZE, vcounter = 0, rawsCounter = 1, columnsCounter = Constants.RAW1_COLUMNS_COUNT_CURRENT/2;
+
+        int hcounter1 = Constants.RAW1_ITEM_HEIGHT_SIZE, vcounter = 0, rawsCounter = 1, columnsCounter = Constants.RAW1_COLUMNS_COUNT_CURRENT/2,temp=0;
+
+        leftArrayList.clear();
+        rightArrayList.clear();
+        topArrayList.clear();
+        bottomArrayList.clear();
+
+        if (Constants.RAW1_ITEM_HEIGHT_SIZE<Constants.RAW1_ITEM_WIDTH_SIZE) {
+            temp = Constants.RAW1_ITEM_HEIGHT_SIZE;
+            Constants.RAW1_ITEM_HEIGHT_SIZE = Constants.RAW1_ITEM_WIDTH_SIZE;
+            Constants.RAW1_ITEM_WIDTH_SIZE = temp;
+            hcounter1 = Constants.RAW1_ITEM_HEIGHT_SIZE;
+        }
 
         if (painting) {
             colorArrayList.remove(index);
@@ -68,10 +89,17 @@ public class CanvasRaw1 extends View {
         }
 
         for (int i=0;i<(int) ((Constants.RAW1_COLUMNS_COUNT_CURRENT/2.0) * Constants.RAW1_RAWS_COUNT_CURRENT);i++) {
+
             rectArrayList.get(i).left = hcounter1;
             rectArrayList.get(i).top = vcounter;
-            rectArrayList.get(i).right = rectArrayList.get(i).left + Constants.RAW1_ITEM_SIZE;
-            rectArrayList.get(i).bottom = rectArrayList.get(i).top + Constants.RAW1_ITEM_SIZE;
+            rectArrayList.get(i).right = rectArrayList.get(i).left + Constants.RAW1_ITEM_WIDTH_SIZE;
+            rectArrayList.get(i).bottom = rectArrayList.get(i).top + Constants.RAW1_ITEM_HEIGHT_SIZE;
+
+            leftArrayList.add(rectArrayList.get(i).left);
+            rightArrayList.add(rectArrayList.get(i).right);
+            topArrayList.add(rectArrayList.get(i).top);
+            bottomArrayList.add(rectArrayList.get(i).bottom);
+
             paintArrayList.get(i).setStyle(Paint.Style.FILL);
             paintArrayList.get(i).setColor(colorArrayList.get(i));
             canvas.drawRect(rectArrayList.get(i),paintArrayList.get(i));
@@ -79,19 +107,27 @@ public class CanvasRaw1 extends View {
             paintArrayList.get(i).setStrokeWidth(Constants.STROKE_SIZE);
             paintArrayList.get(i).setColor(Constants.BLACK_COLOR);
             canvas.drawRect(rectArrayList.get(i),paintArrayList.get(i));
-            hcounter1 += Constants.RAW1_ITEM_SIZE*2;
+
+            hcounter1 = rectArrayList.get(i).right+Constants.RAW1_ITEM_HEIGHT_SIZE;
             if (rawsCounter%2!=0 && (i+1) == columnsCounter) {
                 // U are in an odd raw
                 rawsCounter++;
                 columnsCounter = (Constants.RAW1_COLUMNS_COUNT_CURRENT%2 == 0) ? columnsCounter+Constants.RAW1_COLUMNS_COUNT_CURRENT/2 : columnsCounter+Constants.RAW1_COLUMNS_COUNT_CURRENT/2+1;
-                vcounter += Constants.RAW1_ITEM_SIZE;
+                vcounter += Constants.RAW1_ITEM_HEIGHT_SIZE;
                 hcounter1 = 0;
+                // swapping
+                temp = Constants.RAW1_ITEM_WIDTH_SIZE;
+                Constants.RAW1_ITEM_WIDTH_SIZE = Constants.RAW1_ITEM_HEIGHT_SIZE;
+                Constants.RAW1_ITEM_HEIGHT_SIZE = temp;
             } else if (rawsCounter%2==0 && (i+1) == columnsCounter) {
                 // u are in an even raw and
                 rawsCounter++;
                 columnsCounter += Constants.RAW1_COLUMNS_COUNT_CURRENT/2;
-                vcounter += Constants.RAW1_ITEM_SIZE;
-                hcounter1 = Constants.RAW1_ITEM_SIZE;
+                vcounter += Constants.RAW1_ITEM_HEIGHT_SIZE;
+                hcounter1 = Constants.RAW1_ITEM_WIDTH_SIZE;
+                temp = Constants.RAW1_ITEM_WIDTH_SIZE;
+                Constants.RAW1_ITEM_WIDTH_SIZE = Constants.RAW1_ITEM_HEIGHT_SIZE;
+                Constants.RAW1_ITEM_HEIGHT_SIZE = temp;
             }
         }
     }
@@ -100,21 +136,12 @@ public class CanvasRaw1 extends View {
     public boolean onTouchEvent(MotionEvent event) {
         switch (event.getAction()) {
             case MotionEvent.ACTION_UP:
-                int raw = (int) (event.getY()/Constants.RAW1_ITEM_SIZE)+1;
-                int column = (int) (event.getX()/Constants.RAW1_ITEM_SIZE)+1;
-                if (column<=Constants.RAW1_COLUMNS_COUNT_CURRENT) {
-                    if (raw %2 !=0 && column %2 ==0) {
-                        if (Constants.RAW1_COLUMNS_COUNT_CURRENT%2 ==0) // even input columns count
-                            index = (Constants.RAW1_COLUMNS_COUNT_CURRENT/2)*(raw-1)+(column-1)/2;
-                        else // odd input columns count
-                            index = (raw==1) ? (Constants.RAW1_COLUMNS_COUNT_CURRENT/2)*(raw-1)+(column-1)/2: (Constants.RAW1_COLUMNS_COUNT_CURRENT/2)*(raw-1)+raw/2+(column-1)/2;
+                for (int i = 0; i < leftArrayList.size(); i++) {
+                    if (event.getY() <= bottomArrayList.get(i) && event.getY() >= topArrayList.get(i) && event.getX() >= leftArrayList.get(i) && event.getX() <= rightArrayList.get(i)) {
+                        index = i;
                         painting = true;
                         postInvalidate();
-                    }
-                    else if (raw %2 ==0 && column%2 !=0){
-                        index = (Constants.RAW1_COLUMNS_COUNT_CURRENT%2 ==0) ? (Constants.RAW1_COLUMNS_COUNT_CURRENT/2)*(raw-1)+(column-1)/2: (Constants.RAW1_COLUMNS_COUNT_CURRENT/2)*(raw-1)+raw/2+((column-1)/2)-1;
-                        painting = true;
-                        postInvalidate();
+                        break;
                     }
                 }
                 break;
@@ -123,13 +150,15 @@ public class CanvasRaw1 extends View {
     }
 
     public void zoomIn() {
-        Constants.RAW1_ITEM_SIZE += Constants.RAW1_ZOOMING_RATIO;
+        Constants.RAW1_ITEM_HEIGHT_SIZE += Constants.RAW1_ZOOMING_RATIO_HEIGHT;
+        Constants.RAW1_ITEM_WIDTH_SIZE += Constants.RAW1_ZOOMING_RATIO_WIDTH;
         postInvalidate();
     }
 
     public void zoomOut() {
-        if (Constants.RAW1_ZOOMING_RATIO<Constants.RAW1_ITEM_SIZE) {
-            Constants.RAW1_ITEM_SIZE -= Constants.RAW1_ZOOMING_RATIO;
+        if (Constants.RAW1_ZOOMING_RATIO_WIDTH<Constants.RAW1_ITEM_WIDTH_SIZE) {
+            Constants.RAW1_ITEM_HEIGHT_SIZE -= Constants.RAW1_ZOOMING_RATIO_HEIGHT;
+            Constants.RAW1_ITEM_WIDTH_SIZE -= Constants.RAW1_ZOOMING_RATIO_WIDTH;
             postInvalidate();
         }
     }

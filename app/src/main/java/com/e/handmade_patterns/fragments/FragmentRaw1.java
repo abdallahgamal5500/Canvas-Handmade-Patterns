@@ -132,8 +132,16 @@ public class FragmentRaw1 extends Fragment implements View.OnClickListener, IOnB
 
     private void setCanvasSize() {
         // these lines to set the size of the canvas dinamicly
-        binding.raw1Canvas.setMinimumHeight(Constants.RAW1_RAWS_COUNT_CURRENT * Constants.RAW1_ITEM_SIZE);
-        binding.raw1Canvas.setMinimumWidth(Constants.RAW1_COLUMNS_COUNT_CURRENT * Constants.RAW1_ITEM_SIZE);
+        if (Constants.RAW1_RAWS_COUNT_CURRENT%2==0)
+            binding.raw1Canvas.setMinimumHeight(((Constants.RAW1_RAWS_COUNT_CURRENT/2) * Constants.RAW1_ITEM_HEIGHT_SIZE) + ((Constants.RAW1_RAWS_COUNT_CURRENT/2) * Constants.RAW1_ITEM_WIDTH_SIZE));
+        else
+            binding.raw1Canvas.setMinimumHeight((((Constants.RAW1_RAWS_COUNT_CURRENT/2)+1) * Constants.RAW1_ITEM_HEIGHT_SIZE) + ((Constants.RAW1_RAWS_COUNT_CURRENT/2) * Constants.RAW1_ITEM_WIDTH_SIZE));
+
+        if (Constants.RAW1_COLUMNS_COUNT_CURRENT%2==0)
+            binding.raw1Canvas.setMinimumWidth(((Constants.RAW1_COLUMNS_COUNT_CURRENT/2) * Constants.RAW1_ITEM_HEIGHT_SIZE) + ((Constants.RAW1_COLUMNS_COUNT_CURRENT/2) * Constants.RAW1_ITEM_WIDTH_SIZE));
+        else
+            binding.raw1Canvas.setMinimumWidth((((Constants.RAW1_COLUMNS_COUNT_CURRENT/2)+1) * Constants.RAW1_ITEM_HEIGHT_SIZE) + ((Constants.RAW1_COLUMNS_COUNT_CURRENT/2) * Constants.RAW1_ITEM_WIDTH_SIZE));
+
         binding.raw1Canvas.setBackgroundColor(Constants.RAW1_BACKGROUND_COLOR);
     }
 

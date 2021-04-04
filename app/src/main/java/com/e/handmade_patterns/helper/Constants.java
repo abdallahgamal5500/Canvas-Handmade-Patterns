@@ -61,10 +61,10 @@ public class Constants {
     public static Context BRICK_CONTEXT = null;
 
     // raw1
-    public static int RAW1_ITEM_SIZE = 50;
-    public static int RAW1_ZOOMING_RATIO = 25;
-    public static int RAW1_RAWS_COUNT = 0;
-    public static int RAW1_COLUMNS_COUNT =0;
+    public static int RAW1_ITEM_HEIGHT_SIZE = 50;
+    public static int RAW1_ITEM_WIDTH_SIZE = 40;
+    public static int RAW1_ZOOMING_RATIO_HEIGHT = 25;
+    public static int RAW1_ZOOMING_RATIO_WIDTH = 20;
     public static int RAW1_RAWS_COUNT_CURRENT = 0;
     public static int RAW1_COLUMNS_COUNT_CURRENT =0;
     public static String RAW1_COLOR_DB = "RAW1_COLOR";
