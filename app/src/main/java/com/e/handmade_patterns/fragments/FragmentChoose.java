@@ -280,8 +280,8 @@ public class FragmentChoose extends Fragment {
                                     for (int i=0;i<Constants.RAW1_COLUMNS_COUNT_CURRENT * Constants.RAW1_RAWS_COUNT_CURRENT;i++)
                                         editor.remove(Constants.RAW1_COLOR_DB+i);
                                 }
-                                Constants.RAW1_RAWS_COUNT_CURRENT = Integer.parseInt(binding.chooseSpinner3.getText().toString());
-                                Constants.RAW1_COLUMNS_COUNT_CURRENT = Integer.parseInt(binding.chooseSpinner4.getText().toString());
+                                Constants.RAW1_RAWS_COUNT_CURRENT = Integer.parseInt(binding.chooseSpinner3.getText().toString())*2+1;
+                                Constants.RAW1_COLUMNS_COUNT_CURRENT = Integer.parseInt(binding.chooseSpinner4.getText().toString())*2+1;
 
                                 editor.putInt(Constants.RAW1_RAWS_COUNT_DB, Constants.RAW1_RAWS_COUNT_CURRENT);
                                 editor.putInt(Constants.RAW1_COLUMNS_COUNT_DB, Constants.RAW1_COLUMNS_COUNT_CURRENT);

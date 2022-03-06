@@ -18,6 +18,7 @@
             android:screenOrientation="portrait">
         </activity>
         <activity android:name=".ui.MainActivity"
+            android:exported="true"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -30,6 +31,10 @@
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="ca-app-pub-7416399602135775~3270185074"/>
+
+        <!-- startapp -->
+        <meta-data android:name="com.startapp.sdk.APPLICATION_ID" android:value="208653277" />
+
     </application>
 
 </manifest>
