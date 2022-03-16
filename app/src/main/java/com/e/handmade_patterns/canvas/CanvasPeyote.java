@@ -84,7 +84,7 @@ public class CanvasPeyote extends View {
             canvas.drawRect(rectArrayList.get(i),paintArrayList.get(i));
             paintArrayList.get(i).setStyle(Paint.Style.STROKE);
             paintArrayList.get(i).setStrokeWidth(Constants.STROKE_SIZE);
-            paintArrayList.get(i).setColor(Constants.BLACK_COLOR);
+            paintArrayList.get(i).setColor(Constants.BLUE_COLOR);
             canvas.drawRect(rectArrayList.get(i),paintArrayList.get(i));
             hcounter1 += Constants.PEYOTE_WIDTH_SIZE;
 

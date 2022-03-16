@@ -64,7 +64,7 @@
             app:layout_constraintRight_toRightOf="parent"
             android:layout_centerHorizontal="true"
             android:layout_alignParentBottom="true"
-            ads:adSize="BANNER"
+            ads:adSize="SMART_BANNER"
             ads:adUnitId="ca-app-pub-7416399602135775/3084995008">
         </com.google.android.gms.ads.AdView>
 

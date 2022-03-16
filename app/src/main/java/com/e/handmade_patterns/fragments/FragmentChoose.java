@@ -17,6 +17,10 @@ import com.e.handmade_patterns.R;
 import com.e.handmade_patterns.databinding.FragmentChooseBinding;
 import com.e.handmade_patterns.helper.Constants;
 import com.e.handmade_patterns.interfaces.Communicator;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.LoadAdError;
+import com.google.android.gms.ads.interstitial.InterstitialAd;
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
 import com.jaredrummler.materialspinner.MaterialSpinner;
 
 import java.util.ArrayList;
@@ -32,8 +36,10 @@ public class FragmentChoose extends Fragment {
     private View view;
     private SharedPreferences preferences;
     private SharedPreferences.Editor editor;
+    private InterstitialAd mInterstitialAd;
 
     public FragmentChoose() {
+
     }
 
     public static FragmentChoose getInstance() {
@@ -48,6 +54,7 @@ public class FragmentChoose extends Fragment {
                              Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_choose, container, false);
         view = binding.getRoot();
+        showAd();
 
         // these two lines to hide the left tools layout
         communicator.hideToalbar();
@@ -316,6 +323,27 @@ public class FragmentChoose extends Fragment {
                 }
         });
         return view;
+    }
+
+    private void showAd() {
+        // Interstitial Ad
+        AdRequest adRequest= new AdRequest.Builder().build();
+        InterstitialAd.load(getContext(), "ca-app-pub-7416399602135775/2814481978", adRequest,
+                new InterstitialAdLoadCallback() {
+                    @Override
+                    public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                        // Handle the error
+                        mInterstitialAd = null;
+                    }
+
+                    @Override
+                    public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
+                        // The mInterstitialAd reference will be null until
+                        // an ad is loaded.
+                        mInterstitialAd = interstitialAd;
+                        mInterstitialAd.show(getActivity());
+                    }
+                });
     }
 
     @Override

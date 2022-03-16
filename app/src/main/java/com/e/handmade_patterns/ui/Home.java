@@ -43,12 +43,6 @@ public class Home extends AppCompatActivity implements Communicator{
         mAdView.loadAd(adRequest);
     }
 
-    /*private void showFragmentHere (Fragment fragment) {
-        getSupportFragmentManager().beginTransaction()
-                .add(R.id.home_framelayout,fragment)
-                .commit();
-    }*/
-
     @Override
     public void showFragment(Fragment fragment) {
         getSupportFragmentManager().beginTransaction()

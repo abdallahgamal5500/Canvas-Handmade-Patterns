@@ -21,6 +21,10 @@ import com.e.handmade_patterns.helper.Help;
 import com.e.handmade_patterns.interfaces.Communicator;
 import com.e.handmade_patterns.interfaces.IOnBackPressed;
 import com.e.handmade_patterns.ui.Home;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.LoadAdError;
+import com.google.android.gms.ads.interstitial.InterstitialAd;
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
 import com.skydoves.colorpickerview.ColorEnvelope;
 import com.skydoves.colorpickerview.listeners.ColorEnvelopeListener;
 
@@ -34,6 +38,7 @@ public class FragmentPalette extends Fragment implements View.OnClickListener, I
     private ColorEnvelope colorEnvelope;
     private SharedPreferences preferences;
     private SharedPreferences.Editor editor;
+    private InterstitialAd mInterstitialAd;
 
     public FragmentPalette() {
     }
@@ -50,6 +55,7 @@ public class FragmentPalette extends Fragment implements View.OnClickListener, I
                              Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_palette, container, false);
         view = binding.getRoot();
+        showAd();
 
         // this line to show the left tools layout
         communicator.hideToalbar();
@@ -105,6 +111,27 @@ public class FragmentPalette extends Fragment implements View.OnClickListener, I
             }
         });
         return view;
+    }
+
+    private void showAd() {
+        // Interstitial Ad
+        AdRequest adRequest= new AdRequest.Builder().build();
+        InterstitialAd.load(getContext(), "ca-app-pub-7416399602135775/2814481978", adRequest,
+                new InterstitialAdLoadCallback() {
+                    @Override
+                    public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                        // Handle the error
+                        mInterstitialAd = null;
+                    }
+
+                    @Override
+                    public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
+                        // The mInterstitialAd reference will be null until
+                        // an ad is loaded.
+                        mInterstitialAd = interstitialAd;
+                        mInterstitialAd.show(getActivity());
+                    }
+                });
     }
 
     @Override

@@ -7,6 +7,7 @@ public class Constants {
 
     // Colors
     public static final int BLACK_COLOR = Color.parseColor("#121C3B");
+    public static final int BLUE_COLOR = Color.parseColor("#B3C8D8");
     public static final int DELETE_COLOR = Color.WHITE;
     public static int PEN_COLOR = Color.parseColor("#FFCB41"), CURRENT_COLOR = Color.parseColor("#FFCB41");
     public static final int CLICK_COLOR = Color.parseColor("#80FFFFFF");
