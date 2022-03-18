@@ -74,6 +74,7 @@ public class CanvasRaw1 extends View {
         topArrayList.clear();
         bottomArrayList.clear();
 
+
         if (Constants.RAW1_ITEM_HEIGHT_SIZE<Constants.RAW1_ITEM_WIDTH_SIZE) {
             temp = Constants.RAW1_ITEM_HEIGHT_SIZE;
             Constants.RAW1_ITEM_HEIGHT_SIZE = Constants.RAW1_ITEM_WIDTH_SIZE;
@@ -156,7 +157,7 @@ public class CanvasRaw1 extends View {
     }
 
     public void zoomOut() {
-        if (Constants.RAW1_ZOOMING_RATIO_WIDTH<Constants.RAW1_ITEM_WIDTH_SIZE) {
+        if (Constants.RAW1_ZOOMING_RATIO_WIDTH<Constants.RAW1_ITEM_WIDTH_SIZE && Constants.RAW1_ZOOMING_RATIO_HEIGHT<Constants.RAW1_ITEM_HEIGHT_SIZE) {
             Constants.RAW1_ITEM_HEIGHT_SIZE -= Constants.RAW1_ZOOMING_RATIO_HEIGHT;
             Constants.RAW1_ITEM_WIDTH_SIZE -= Constants.RAW1_ZOOMING_RATIO_WIDTH;
             postInvalidate();
