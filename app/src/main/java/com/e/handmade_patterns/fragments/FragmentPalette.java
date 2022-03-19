@@ -55,7 +55,7 @@ public class FragmentPalette extends Fragment implements View.OnClickListener, I
                              Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_palette, container, false);
         view = binding.getRoot();
-        showAd();
+        //showAd();
 
         // this line to show the left tools layout
         communicator.hideToalbar();

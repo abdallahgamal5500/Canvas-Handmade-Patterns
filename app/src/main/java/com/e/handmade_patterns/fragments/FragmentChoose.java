@@ -54,7 +54,7 @@ public class FragmentChoose extends Fragment {
                              Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_choose, container, false);
         view = binding.getRoot();
-        showAd();
+        //showAd();
 
         // these two lines to hide the left tools layout
         communicator.hideToalbar();
